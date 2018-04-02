@@ -12,6 +12,21 @@
 //   4
 //   buzz
 
-function fizzBuzz(n) {}
+function fizzBuzz(n) {
+// My First solution
+	for ( var i = 1; i <= n; i++){
+		var str = ''
+
+		if ( i % 3 === 0){
+			str = str + 'fizz'
+		}
+
+		if( i % 5 === 0 ){
+			str = str + 'buzz'
+		}
+
+		console.log( str = str.length === 0 ? i : str )
+	}
+}
 
 module.exports = fizzBuzz;
