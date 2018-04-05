@@ -105,7 +105,7 @@ class LinkedList {
 		var node = this.head;
 		var counter = 0;
 		if ( node ){
-			while( number !== counter ){
+			while( number !== counter && node ){
 				node = node.next
 				counter++
 			}
@@ -114,6 +114,57 @@ class LinkedList {
 			return null;
 		}
 	}
+
+	removeAt(number){
+		if ( !this.head ){
+			return;
+		}
+
+		if ( number === 0 ){
+			this.head = this.head.next
+		}
+
+		var prev = this.getAt(number - 1)
+
+		if ( !prev || !prev.next ){
+			return;
+		}
+
+		prev.next = prev.next.next
+
+	}
+
+	insertAt(data, number){
+
+		if ( number === 0 ){
+			if ( this.head ){
+				this.insertFirst(data, this.head)
+				return;
+			}else{
+				this.insertFirst(data)
+				return;
+			}
+		}
+
+		var prev = this.getAt(number - 1)
+
+		if ( !prev || !prev.next ){
+			this.insertLast(data)
+			return;
+		}
+
+		prev.next = new Node(data, prev.next)
+	}
+
+	forEach( func ){
+		var node = this.head
+
+		while ( node ){
+			func(node)
+			node = node.next
+		}
+	}
+
 
 }
 
