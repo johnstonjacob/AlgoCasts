@@ -17,18 +17,46 @@ class Node {
 	}
 
 	add(data){
-		this.children.unshift(Array.from(data))
+		this.children.push(new Node(data))
 	}
 
 	remove(data){
-		this.children.splice(this.children.indexOf(data), 1)
+		//MY FIRST SOLUTION
+		// this.children.splice(this.children.indexOf(data), 1)
+
+		this.children = this.children.filter( item =>{
+			return item.data !== data
+		})
 	}
 }
 
 class Tree {
-	constructor(root){
-		this.root = null;
+	constructor(){
+		this.root = null
+	}
 
+	traverseBF(func){
+		//Create empty array
+		//Take root node and add into array
+		//While array has elements, take out first element, retrieve children, add into array
+
+		var arr = [ this.root ];
+
+		while( arr.length ){
+			var node = arr.shift();
+			arr.push(...node.children);
+			func(node)
+		}
+	}
+
+	traverseDF(func){
+		var arr = [ this.root ];
+
+		while( arr.length ){
+			var node = arr.shift();
+			arr.unshift(...node.children);
+			func(node)
+		}
 	}
 }
 
