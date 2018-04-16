@@ -36,3 +36,5 @@ describe('Merge sort', () => {
     expect(mergeSort(getArray())).toEqual(getSortedArray());
   });
 });
+
+//
